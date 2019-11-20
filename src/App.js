@@ -2,13 +2,27 @@ import React, { Component } from 'react';
 import Cart from './components/cart';
 import LstCourses from './components/lstcourses';
 import './App.css';
-import courses from './courses.json';
-import { tsImportEqualsDeclaration } from '@babel/types';
+//import coursesStatic from './courses.json';
 
 class App extends Component {
   state = {
-    courses: courses
+    //courses: courses
+    courses: []
   };
+
+  componentDidMount() {
+    //fetch("https://hills.ccsf.edu/~asary/courses.json")
+    fetch("https://raw.githubusercontent.com/als1/events-courses/master/src/courses.json")
+      .then(courses => courses.json())
+      .then( (courses) => {
+        this.setState({ courses: courses });
+        //console.log("Courses read: ", courses)
+      },
+      (error) => {
+        this.setState({ courses: [] });
+        console.log("Error: Could not get courses: ", error);
+      });
+  }
 
   handleAddButton = counter => {
     const tempcourses = [...this.state.courses];
@@ -43,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Cart totalItems={this.state.courses.map(i => i.counter).reduce((prev, next) => prev + next) } />
+        <Cart totalItems={ this.state.courses.length === 0 ? 0 : this.state.courses.map(i => i.counter).reduce((prev, next) => prev + next) } />
         <main className="container">
           <LstCourses courses={this.state.courses} onClearCounters={this.handleClearCounters} onDelete={this.handleDeleteButton} onIncrement={this.handleAddButton} onDecrement={this.handleRemoveButton} />
         </main>

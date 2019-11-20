@@ -29,4 +29,5 @@ ul li:hover {
   display: grid;
   grid-template-colums: 30% auto;
   font-weight: bold;
+  white-space: nowrap;
 }
