@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d17c10f015d5269d11c036c8c6c68360",
+    "revision": "3a9cbf65f515dceb905d34ea46d34183",
     "url": "/events-courses/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/events-courses/static/css/2.833dd627.chunk.css"
   },
   {
-    "revision": "782d2bfb0262554b7721",
+    "revision": "fc2e49df0d208b59320d",
     "url": "/events-courses/static/css/main.f0cd3304.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/events-courses/static/js/2.18bedff0.chunk.js"
   },
   {
-    "revision": "782d2bfb0262554b7721",
-    "url": "/events-courses/static/js/main.2bceaeab.chunk.js"
+    "revision": "fc2e49df0d208b59320d",
+    "url": "/events-courses/static/js/main.f008c67a.chunk.js"
   },
   {
     "revision": "101c3cfb8ac434ef2b4f",
