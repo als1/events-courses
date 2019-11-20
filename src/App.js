@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Cart from './components/cart';
+import LstCourses from './components/lstcourses';
 import './App.css';
+import courses from './courses.json';
+import { tsImportEqualsDeclaration } from '@babel/types';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    courses: courses
+  };
+
+  handleAddButton = counter => {
+    const tempcourses = [...this.state.courses];
+    const i = tempcourses.indexOf(counter);
+    tempcourses[i] = { ...counter };
+    tempcourses[i].counter++;
+    this.setState({ courses: tempcourses });
+  }
+
+  handleRemoveButton = counter => {
+    if (counter.counter === 0) return;
+    const tempcourses = [...this.state.courses];
+    const i = tempcourses.indexOf(counter);
+    tempcourses[i] = { ...counter };
+    tempcourses[i].counter--;
+    this.setState({ courses: tempcourses });
+  }
+
+  handleDeleteButton = (courseId) => {
+    const tempcourses = this.state.courses.filter(c => c.id !== courseId);
+    this.setState( { courses: tempcourses });
+  }
+
+  handleClearCounters = () => {
+    const tempcourses = this.state.courses.map(ct => {
+        ct.counter = 0;
+        return ct;
+    });
+    this.setState({ courses: tempcourses });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Cart totalItems={this.state.courses.map(i => i.counter).reduce((prev, next) => prev + next) } />
+        <main className="container">
+          <LstCourses courses={this.state.courses} onClearCounters={this.handleClearCounters} onDelete={this.handleDeleteButton} onIncrement={this.handleAddButton} onDecrement={this.handleRemoveButton} />
+        </main>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;

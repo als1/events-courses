@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.course-container {
+  margin: 0.4em auto;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: auto 40% 5em auto auto auto;
+  font-weight: bold;
+  background-color: #E5E8E8;
+}
+
+ul li:hover {
+  background-color: lightgrey;
+}
+
+.cart-container {
+  display: grid;
+  grid-template-colums: 30% auto;
+  font-weight: bold;
+}
